@@ -1,0 +1,121 @@
+/* General Styles */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+/* Container for the Register form */
+.container {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  max-width: 500px;
+  margin: 50px auto;
+}
+
+/* Input fields and labels styling */
+label {
+  font-size: 1.1em;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input[type="text"], input[type="password"], input[type="email"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  font-size: 1em;
+  transition: all 0.3s ease-in-out;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus {
+  border-color: #007BFF;
+  outline: none;
+}
+
+/* Checkbox Styling */
+.input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.input-group label {
+  margin-right: 10px;
+  font-size: 1em;
+}
+
+input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+}
+
+/*Button Styling*/
+/*reg btn*/
+#registerbtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+#registerbtn:hover {
+  background-color: #0056b3;
+}
+
+/*login btn*/
+#loginbtn {
+  width: 100%;
+  padding: 12px;
+  background-color: #007BFF;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+#loginbtn:hover {
+  background-color: #0056b3;
+}
+
+/*create one btn*/
+#createonebtn {
+  width: 100%;
+  padding: 5px;
+  color: #000000;
+  border-radius: 5px;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+
+#createonebtn:hover {
+  /*background-color: #0056b3;*/
+  color:#0633fd
+}
+
+
+
+
+  button {
+    font-size: 1em;
+    padding: 10px;
+  }
+

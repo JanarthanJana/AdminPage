@@ -2,10 +2,9 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 
 export default function CreateProduct() {
-  
-  const[validationErrors, setValidationErros] = useState({})  
+  const [validationErrors, setValidationErrors] = useState({});
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   async function handleSubmit(event) {
     event.preventDefault();
@@ -21,9 +20,6 @@ export default function CreateProduct() {
     if (!product.price || product.price <= 0) {
       validationErrors.price = "Price must be a positive number.";
     }
-    if (!product.category) {
-      validationErrors.category = "Category is required.";
-    }
     if (!product.description || product.description.trim().length < 10) {
       validationErrors.description = "Description must be at least 10 characters.";
     }
@@ -36,28 +32,28 @@ export default function CreateProduct() {
       return;
     }
 
-  try{
-    const response = await fetch("http://localhost:5000/api/products",{
-        method:"POST",
-        body:formData
-    })
-    const data = await response.json()
+    try {
+      const response = await fetch("http://localhost:5000/api/products", {
+        method: "POST",
+        body: formData,
+        headers: {
+          // No 'Content-Type' header since `fetch` automatically sets it for `FormData`
+        },
+      });
 
-    if (response.ok){
-        //product sreate correctly
-        navigate("/admin/products")
-    }
-    else if(response.status ===400){
-       setValidationErros(data)
-    }
-    else{
-        alert("Unable to create the Produc!")
-    }
-  }
-  catch(error){
-    alert("Unable to create the Server!")
+      const data = await response.json();
 
-  }
+      if (response.ok) {
+        // Product created successfully
+        navigate("/admin/products");
+      } else if (response.status === 400) {
+        setValidationErrors(data);
+      } else {
+        alert("Unable to create the product!");
+      }
+    } catch (error) {
+      alert("Unable to connect to the server!");
+    }
   }
 
   return (
@@ -65,12 +61,17 @@ export default function CreateProduct() {
       <div className="row">
         <div className="col-md-8 mx-auto border p-4">
           <h2 className="text-center mb-5">Create Product</h2>
+
           <form onSubmit={handleSubmit}>
             {/* Name */}
             <div className="form-group mb-3">
               <label htmlFor="name">Name</label>
               <input className="form-control" id="name" name="name" />
-              {errors.name && <span className="text-danger">{validationErrors.name} {errors.name}</span>}
+              {errors.name && (
+                <span className="text-danger">
+                  {validationErrors.name || errors.name}
+                </span>
+              )}
             </div>
 
             {/* Price */}
@@ -80,15 +81,17 @@ export default function CreateProduct() {
                 className="form-control"
                 id="price"
                 name="price"
-                type="number"
                 step="0.01"
                 min="1"
               />
-              {errors.price && <span className="text-danger">{validationErrors.price}{errors.price}</span>}
+              {errors.price && (
+                <span className="text-danger">
+                  {validationErrors.price || errors.price}
+                </span>
+              )}
             </div>
 
-            {/* Category */}
-            
+          
 
             {/* Description */}
             <div className="form-group mb-3">
@@ -100,7 +103,9 @@ export default function CreateProduct() {
                 rows="4"
               ></textarea>
               {errors.description && (
-                <span className="text-danger">{validationErrors.description}{errors.description}</span>
+                <span className="text-danger">
+                  {validationErrors.description || errors.description}
+                </span>
               )}
             </div>
 
@@ -113,7 +118,11 @@ export default function CreateProduct() {
                 name="image"
                 type="file"
               />
-              {errors.image && <span className="text-danger">{validationErrors.image}{errors.image}</span>}
+              {errors.image && (
+                <span className="text-danger">
+                  {validationErrors.image || errors.image}
+                </span>
+              )}
             </div>
 
             {/* Buttons */}
